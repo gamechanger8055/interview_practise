@@ -1,0 +1,22 @@
+Design an API using Django Rest Framework to retrieve weather information based on a user's location.
+The API should provide the following functionalities:
+
+
+
+
+Weather Retrieval:
+
+Create an endpoint that accepts latitude and longitude as input parameters.
+Upon receiving these coordinates, the API should fetch the current weather information
+(e.g., temperature, humidity, weather description) for that location using a weather API (e.g., OpenWeatherMap,
+ WeatherAPI, etc.).
+
+Authentication: Implement a simple API key-based authentication system for accessing the weather
+information endpoint. Provide a default API key for demonstration purposes.
+
+Response Format: Return the weather information in JSON format with appropriate fields for temperature,
+ humidity, weather description, and any other relevant data.
+
+Error Handling: Handle potential errors, such as invalid coordinates or authentication failures,
+ by providing meaningful error messages in the API response.
+

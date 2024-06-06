@@ -1,0 +1,1 @@
+#transitive closure:  means if a poit
