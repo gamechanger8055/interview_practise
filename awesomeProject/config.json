@@ -1,0 +1,109 @@
+{
+  "DB_CONFIG_ENABLED": true,
+  "EURONET_BILLER_DB_CONFIG_ENABLED": true,
+  "PICK_FROM_DB": true,
+  "GATEWAY": "euronetuserplans",
+  "REQUEST_URL":{
+    "VI_URL":"https://invas01.eftapme.com/Vodafone121/FetchVodafone121Plans",
+    "AIRTEL_URL":"https://invas01.eftapme.com/RechargePlanV2/API/RechargeplanAPIV2/RechargeplanV2"
+  },
+  "HARDCODED_VALUES":{
+    "MerchantCodeVI":"ONE",
+    "MerchantCodeAirtel":"ONE",
+    "SpCode":"VOD",
+    "ChannelCode":"INR",
+    "Type":"Prepaid",
+    "IP":"10.13.135.43",
+    "BILLER_ID":{
+      "AIRTEL": "ART00MR000MR01",
+      "VI": "VIL000000NAT01"
+    }
+  },
+  "ENCRYPTED":{
+    "USERNAME":"598f27ef0a7b2d8e1d84",
+    "PASSWORD":"598f71ef0a2e2ddb50c4",
+    "HASH_VALUE":"23d807e7042a00a134c0ec0a5442050daced315549e923ef1450d6f5fe180c9779e926cd7d708ecb83e9057ef61a5f625f42f473270e18517cc10272877e8c74"
+  },
+  "NETWORK": {
+    "VI_USERPLANS_URL": "<%= _.get(self.CONFIG,'REQUEST_URL.VI_URL','') %>",
+    "VI_USERPLANS_METHOD": "POST",
+    "VI_USERPLANS_HEADER": {
+      "Content-Type"  : "application/json"
+    },
+    "VI_USERPLANS_BODY":"{\"MerchantCode\":\"<%=_.get(self.CONFIG, 'HARDCODED_VALUES.MerchantCodeVI', '')%>\",\"SpCode\":\"<%=_.get(self.CONFIG, 'HARDCODED_VALUES.SpCode', '')%>\",\"MerchantRefNo\":\"<%=_.get(message,'id','')%>\",\"ChannelCode\":\"<%=_.get(self.CONFIG, 'HARDCODED_VALUES.ChannelCode', '')%>\",\"ConsumerNo\":\"<%= _.get(message, 'userData.recharge_number', '')%>\",\"Type\":\"<%=_.get(self.CONFIG, 'HARDCODED_VALUES.Type', '')%>\",\"IP\":\"<%=_.get(self.CONFIG, 'HARDCODED_VALUES.IP', '')%>\"}",
+    "VI_USERPLANS_OTHEROPTS": {
+      "rejectUnauthorized": false
+    },
+    "AIRTEL_USERPLANS_URL": "<%= _.get(self.CONFIG,'REQUEST_URL.AIRTEL_URL','') %>",
+    "AIRTEL_USERPLANS_METHOD": "POST",
+    "AIRTEL_USERPLANS_HEADER": {
+      "Content-Type"  : "application/json"
+    },
+    "AIRTEL_USERPLANS_BODY":"{\"MerchantRefNo\":\"<%=_.get(message,'id','')%>\",\"MerchantCode\":\"<%=_.get(self.CONFIG, 'HARDCODED_VALUES.MerchantCodeAirtel', '')%>\",\"BillerId\":\"<%=_.get(self.getMerchantConfig(message),'biller_id')%>\",\"Circle\":\"\",\"MobileNo\":\"<%= _.get(message, 'userData.recharge_number', '')%>\",\"UserName\":\"<%=_.get(self.CONFIG, 'USERNAME', '')%>\",\"Password\":\"<%=_.get(self.CONFIG, 'PASSWORD', '')%>\",\"HashValue\":\"<%=_.get(self.CONFIG, 'HASH_VALUE', '')%>\"}",
+    "AIRTEL_USERPLANS_OTHEROPTS": {
+      "rejectUnauthorized": false
+    }
+  },
+  "ENABLE_REQUEST": {
+    "USERPLANS": true
+  },
+  "PARSE_TYPE": {
+    "AIRTEL_USERPLANS": {
+      "TYPE": "JSON"
+    },
+    "VI_USERPLANS": {
+      "TYPE": "JSON"
+    }
+  },
+  "RESPONSE": {
+    "AIRTEL_USERPLANS": {
+      "RESPONSE_STR": {
+        "value": "<%=_.get(response, 'logs.ResponseCode', null) %>",
+        "format": "string"
+      },
+      "VALUE": [
+        {
+          "code": ["00"],
+          "status": true
+        },
+        {
+          "code": ["ECP","EDT","EIE","EIM","EIP","EIU","EMI","E18","UTP","INP","IVP","AUE","HKM","IPM"],
+          "status": false,
+          "errorMessageCode": 1031
+        },
+        {
+          "code": ["NRF"],
+          "status": false,
+          "errorMessageCode": 1045
+        },
+        {
+          "code": ["DEFAULT"],
+          "status": false,
+          "errorMessageCode": 4
+        }
+      ]
+    },
+    "VI_USERPLANS": {
+      "RESPONSE_STR": {
+        "value": "<%=_.get(response, 'logs.Header.ResultStatus.Code', null) %>",
+        "format": "string"
+      },
+      "VALUE": [
+        {
+          "code": ["ER000"],
+          "status": true
+        },
+        {
+          "code": ["ER001","ER002","ER003","ER004","ER005","ER006","ER007","ER008","ER009","ER010","ER011"],
+          "status": false,
+          "errorMessageCode": 1031
+        },
+        {
+          "code": ["DEFAULT"],
+          "status": false,
+          "errorMessageCode": 4
+        }
+      ]
+    }
+  }
+}
