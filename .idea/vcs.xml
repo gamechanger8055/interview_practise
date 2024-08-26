@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/backend-take-home-oyaqvg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/moshi" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/request-replay" vcs="Git" />
   </component>
 </project>

@@ -1,0 +1,161 @@
+Hotel management system
+Requirements
+
+The system should support the booking of different room types like standard, deluxe. Etc
+Guests should be able to search the room inventory and the and book any available room.
+The system should be able to retrieve information, such as who booked a particular room, or what rooms were booked by specific customer.
+The system should allow customers to cancel their booking - and provide them with a full refund if the cancellation occurs before 24 hours of the check-in date.
+The system should be able to send notifications whenever the booking is nearing the check in or checkout date.
+The system should maintain a room housekeeping log to keep track of all housekeeping tasks.
+Any customer should be able to add room services and food items.
+The customer should be able to pay their bills through credit card, check or cash.
+Admin should be able to add or delete room.
+Receptionalist should be able to check-in and check-out a guest.
+
+Class Design
+RoomTypes
+-deluxe
+-standard
+
+RoomStatus
+-available
+-booked
+-under_matintence
+
+Payment Mode
+-credit card
+-cheque
+-cash
+
+
+RoomServices
+
+Payment Status
+-done
+-pending
+-cancelled
+
+NotificationMedium
+-mobile
+-email
+
+BookingStatus
+-booked
+-pending
+-cancelled
+
+
+Location
+-id
+-name
+-street
+-city
+
+
+
+Hotel
+-id
+-name
+-location<Location>
+-rooms<list>
+-staffs<list>
+Methods
+-add_rooms()/delet_rooms()
+-add_staffs()/delet_rooms()
+
+Person(abstract class)  // creating different roles by factory design pattern)
+-name
+-email
+Guest(Person)
+-id
+-name
+-email
+Methods
+-search_rooms()
+-book_rooms()
+-cancel_rooms()
+
+Receptionist(Person)
+-checkin(room)
+-checkout(room)
+
+Admin(Person)
+-add()
+-delete(room)
+-edit_room(rooms)
+
+
+
+Rooms
+-id
+-price_per_day
+-room_status<RoomStatus>
+-room_type<RoomType>
+-housekeepingLog<list of HousekeepingLog>
+
+
+Methods:
+-get_availability_status()
+-make_room_available()
+-book()
+
+Booking:
+-id
+-booking_person
+-payment<Payment>
+-persons<list>
+-booking_date
+-booking_status<BookingStatus>
+-checkin datetime<Datetime>
+-checkout<DateTime>
+-rooms<list of rooms>
+
+
+Methods
+-get_booking()
+-change_booking_status(status)
+
+
+
+Payment
+-id
+-amount
+-mode_of_payment<paymentMode>
+-payment_status<PaymentStatus>
+-payment_datetime<DateTime>
+
+Method:
+make_payment()  #based on payment mode- strategy
+-check_status()
+-refund()
+
+
+
+Notification
+-id
+-notification_datetime
+-notification_medium<NotificationMedium>
+
+Methods
+-send_notification()
+
+HousekeepingLog
+-id
+-housekeeper_id
+-datetime
+
+Methods
+-add_log()
+
+UserRoomService
+
+-services<Service>
+-food_items<orders>
+
+methods()
+-compute_Service_cost()  #decorator pattern
+
+Service
+-service_type<ServiceType>
+-cost
+-quantity

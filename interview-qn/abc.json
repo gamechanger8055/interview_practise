@@ -1,0 +1,47 @@
+[
+  {
+    'activity_type': 'Add user',
+    'target_id': '1',
+    'old_value': None,
+    'new_value': {
+      'display_name': 'John',
+      'username': 'john321'
+    },
+    'change_timestamp': 1650333433
+  },
+  {
+    'activity_type': 'Updated app',
+    'target_id': '2',
+    'old_value': {
+      'display_name': 'Calendar App',
+      'permissions': [
+        'Calendar.Read'
+      ]
+    },
+    'new_value': {
+      'display_name': 'Calendar App',
+      'permissions': [
+        'Calendar.Read',
+        'Mail.ReadWrite'
+      ]
+    },
+    'change_timestamp': 1650333431
+  },
+  {
+    'activity_type': 'Add user',
+    'target_id': '3',
+    'old_value': None,
+    'new_value': {
+      'display_name': 'Jane',
+      'username': 'janefoster'
+    },
+    'change_timestamp': 1650333430
+  },
+  {
+    'activity_type': 'Updated app',
+    'target_id': '4',
+    'old_value': None,
+    'new_value': None,
+    'change_timestamp': 1650333431
+  }
+]

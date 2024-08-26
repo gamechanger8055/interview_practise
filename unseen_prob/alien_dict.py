@@ -15,7 +15,7 @@ def topSort(n,k,dict):
                 graph[word1[j]].append(word2[j])
                 indegree[ord(word2[j])-ord('a')]+=1
                 break
-    #print(graph,indegree)
+    print(graph,indegree)
     ans=[]
     q=[chr(i+97) for i in range(k) if indegree[i]==0]
     while q:
